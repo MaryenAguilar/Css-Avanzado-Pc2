@@ -1,0 +1,133 @@
+// Variables
+@color-primario: #32303f;
+@color-secundario: #ffffff;
+@color-acento: #fc4811;
+@color-fondo: #f5f5f5;
+@color-texto: #333;
+
+@fuente-principal: 'Helvetica, Arial, sans-serif';
+@espaciado-base: 1rem;
+
+
+//Mixins
+.btn(@fondo, @color) {
+  background-color: @fondo;
+  color: @color;
+  padding: (10 / 16) * 1rem (20 / 16) * 1rem; //conversión de pixeles a rem
+  border: none;
+  border-radius: (5 / 16) * 1rem;
+  box-shadow: 0 (2 / 16) * 1rem (5 / 16) * 1rem rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.sombra-suave() {
+  box-shadow: 0 (4 / 16) * 1rem (10 / 16) * 1rem rgba(0, 0, 0, 0.1);
+}
+
+// estilos body generales
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  font-family: @fuente-principal;
+  background-color: @color-fondo;
+  color: @color-texto;
+}
+
+.site-footer {
+  margin-top: auto;
+  background-color: @color-primario;
+  color: @color-secundario;
+  text-align: center;
+  padding: @espaciado-base;
+}
+
+// Anidamiento
+.site-header {
+  background-color: @color-primario;
+  color: @color-secundario;
+  padding: @espaciado-base;
+
+  .menu {
+    display: flex;
+    gap: (15 / 16) * 1rem;
+
+    a {
+      color: @color-secundario;
+      text-decoration: none;
+
+      &:hover { //estado hover del a
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.servicios {
+  padding: @espaciado-base;
+
+  .cards {
+    display: flex;
+    gap: @espaciado-base;
+
+    .card {
+      width: calc(100% / 2 - (10 / 16) * 1rem);
+      background-color: @color-secundario;
+      padding: (20 / 16) * 1rem;
+      border-radius: (8 / 16) * 1rem;
+      .sombra-suave();
+
+      h3 {
+        margin-top: 0;
+      }
+
+      p {
+        font-size: (14 / 16) * 1rem;
+      }
+
+      .btn {
+        .btn(@color-acento, @color-secundario);
+      }
+    }
+  }
+}
+
+.equipo {
+  padding: @espaciado-base;
+  text-align: center;
+
+  h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: (14 / 16) * 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+.site-footer {
+  background-color: @color-primario;
+  color: @color-secundario;
+  text-align: center;
+  padding: @espaciado-base;
+}
+
+//Que sea responsive
+@media (max-width: 600px) {
+  .cards {
+    flex-direction: column;
+  }
+
+  .card {
+    width: 100% !important;
+  }
+}
